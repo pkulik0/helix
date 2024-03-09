@@ -128,10 +128,12 @@ const (
 	EventSubTypeCharityStart                              = "channel.charity_campaign.start"
 	EventSubTypeStreamOnline                              = "stream.online"
 	EventSubTypeStreamOffline                             = "stream.offline"
+	EventSubTypeUserAuthorizationGrant                    = "user.authorization.grant"
 	EventSubTypeUserAuthorizationRevoke                   = "user.authorization.revoke"
 	EventSubTypeUserUpdate                                = "user.update"
 	EventSubShoutoutCreate                                = "channel.shoutout.create"
 	EventSubShoutoutReceive                               = "channel.shoutout.receive"
+	EventSubTypeChannelAdBreakBegin                       = "channel.ad_break_begin"
 )
 
 // Event Notification Responses
@@ -705,6 +707,9 @@ type EventSubStreamOfflineEvent struct {
 	BroadcasterUserName  string `json:"broadcaster_user_name"`
 }
 
+// Data for a user authorization grant notification.
+type EventSubUserAuthenticationGrantEvent = EventSubUserAuthenticationRevokeEvent
+
 // Data for an user authentication revoke notification, this means the user has revoked the access token and if you need to comply with gdpr you need to delete your user data belonging to the user.
 type EventSubUserAuthenticationRevokeEvent struct {
 	ClientID  string `json:"client_id"`
@@ -931,6 +936,18 @@ type EventSubShoutoutReceiveEvent struct {
 	FromBroadcasterUserLogin string `json:"from_broadcaster_user_login"`
 	ViewerCount              int64  `json:"viewer_count"`
 	StartedAt                Time   `json:"started_at"`
+}
+
+type EventSubAdBreakBeginEvent struct {
+	BroadcasterUserID    string `json:"broadcaster_user_id"`
+	BroadcasterUserLogin string `json:"broadcaster_user_login"`
+	BroadcasterUserName  string `json:"broadcaster_user_name"`
+	RequesterId          string `json:"requester_id"`
+	RequesterLogin       string `json:"requester_login"`
+	RequesterName        string `json:"requester_name"`
+	Duration             int    `json:"duration"`
+	IsAutomatic          bool   `json:"is_automatic"`
+	StartedAt            Time   `json:"started_at"`
 }
 
 // Get all EventSub Subscriptions
