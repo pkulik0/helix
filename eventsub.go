@@ -133,7 +133,7 @@ const (
 	EventSubTypeUserUpdate                                = "user.update"
 	EventSubShoutoutCreate                                = "channel.shoutout.create"
 	EventSubShoutoutReceive                               = "channel.shoutout.receive"
-	EventSubTypeChannelAdBreakBegin                       = "channel.ad_break_begin"
+	EventSubTypeChannelAdBreakBegin                       = "channel.ad_break.begin"
 )
 
 // Event Notification Responses
